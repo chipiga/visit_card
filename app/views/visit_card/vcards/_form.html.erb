@@ -1,0 +1,153 @@
+<style>
+  li.field {clear: both;}
+  li.field > label {display: block;}
+  fieldset ol {list-style-type: none!important; padding: 0!important; margin: 0!important;}
+  fieldset.inputs {border: 1px solid #000000; padding: 10px;}
+  a.add, a.remove {float: right;}
+  .required label:after {content: ' * '; color: red;}
+</style>
+<script>
+$(document).ready(function(){
+  $('a.remove').live('click', function(){
+    //$(this).prev().find('input[type$="hidden"]').val('1');
+    $(this).prev().val('1');
+    $(this).parent().slideUp('slow');
+    return false;
+  });
+  
+  $('a.add').click(function(){
+    var from = $(this).parent().find('fieldset'+($(this).attr('title') ? '.'+$(this).attr('title') : '')+':last'); // source block
+    var id = parseInt(from.find('input:first').attr('id').split('_').sort().shift()) + 1; // parse id and increment
+    var to = from.clone().hide(); // copy block and hide
+    to.find('input,select').attr('id', function(){ // replace id param
+      return this.id.replace(/\d+/, id);
+    });
+    to.find('label').attr('for', function(){ // replace for param
+      return $(this).attr('for').replace(/\d+/, id);
+    });
+    to.find('input,select').attr('name', function(){ // replace name param
+      if ($(this).attr('type') != 'checkbox') { $(this).val(''); } // clear block fields values
+      else { $(this).removeAttr('checked'); } // clear checkboxes
+      return $(this).attr('name').replace(/\d+/, id);
+    });
+    $(this).before(to); // insert block before link
+    to.slideDown('slow'); // show block
+    return false;
+  });
+});
+</script>
+<%= form_for @vcard do |f| %>
+  <% if @vcard.errors.any? %>
+    <div id="errorExplanation">
+      <h2><%= "#{pluralize(@vcard.errors.count, "error")} prohibited this project from being saved:"%></h2>
+      <ul>
+        <% @vcard.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <fieldset class="inputs">
+    <ol>
+      <li class="field required">
+        <%= f.label :family_name %>
+        <%= f.text_field :family_name %>
+      </li>
+      <li class="field required">
+        <%= f.label :given_name %>
+        <%= f.text_field :given_name %>
+      </li>
+      <li class="field">
+        <%= f.label :additional_name %>
+        <%= f.text_field :additional_name %>
+      </li>
+      <li class="field">
+        <%= f.label :honorific_prefix %>
+        <%= f.text_field :honorific_prefix, :size => 10, :maxlength => 10 %>
+      </li>
+      <li class="field">
+        <%= f.label :honorific_suffix %>
+        <%= f.text_field :honorific_suffix, :size => 10, :maxlength => 10 %>
+      </li>
+      <li class="field">
+        <%= f.label :nickname %>
+        <%= f.text_field :nickname %>
+      </li>
+      <li class="field">
+        <%= f.label :photo %>
+        <%= f.url_field :photo %>
+      </li>
+      <li class="field">
+        <%= f.label :bday %>
+        <%= f.date_select :bday, :start_year => Time.now.year - 80, :end_year => Time.now.year, :include_blank => true %>
+      </li>
+
+      <li class="field">
+        <%= f.label :tz %>
+        <%= f.time_zone_select :tz, nil, :include_blank => true %>
+      </li>
+      <li class="field">
+        <%= f.label :latitude %>
+        <%= f.number_field :latitude, :size => 10, :maxlength => 10 %>
+      </li>
+      <li class="field">
+        <%= f.label :longitude %>
+        <%= f.number_field :longitude, :size => 10, :maxlength => 10 %>
+      </li>
+      <li class="field">
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+      </li>
+      <li class="field">
+        <%= f.label :role %>
+        <%= f.text_field :role %>
+      </li>
+      <li class="field">
+        <%= f.label :logo %>
+        <%= f.url_field :logo %>
+      </li>
+      <li class="field">
+        <%= f.label :agent %>
+        <%= f.select :agent_id, Vcard.except(params[:id]).collect {|v| [ v.fn, v.id ] }, :include_blank => true %>
+      </li>
+      <li class="field">
+        <%= f.label :org %>
+        <%= f.text_field :org %>
+      </li>
+      
+      <li class="field">
+        <%= f.check_box_collection :vcard_categories, Hash[ *VcardDictionary.categories.collect { |d| [ d.id, d.name ] }.flatten ] %>
+      </li>
+      
+      <li class="field">
+        <%= f.label :note %>
+        <%= f.text_area :note %>
+      </li>
+      <li class="field">
+        <%= f.label :url %>
+        <%= f.url_field :url %>
+      </li>
+      <li class="field">
+        <%= f.label :klass %>
+        <%= f.select :klass, Vcard::KLASSES %>
+      </li>
+
+      <% %w{adrs tels emails extentions}.each do |item| %>
+        <li class="field <%= item %>">
+          <%= f.fields_for :"vcard_#{item}" do |ff| %>
+            <%= render "vcard_#{item}/form_fields", :ff => ff %>
+          <% end %>
+          <a href='#' class='add' title='<%= item.singularize %>'>Add <%= item.singularize.humanize %></a>
+        </li>
+      <% end %>
+    </ol>
+  </fieldset>
+  
+  <fieldset class="buttons">
+    <ol>
+      <li class="actions">
+        <%= f.submit 'Save' %>
+      </li>
+    </ol>
+  </fieldset>
+<% end %>

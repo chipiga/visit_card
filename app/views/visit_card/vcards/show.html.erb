@@ -1,0 +1,7 @@
+<h1><%= @vcard.fn << (@vcard.nickname? ? " (#{@vcard.nickname})" : '') %></h1>
+
+<%= render 'hcard' %>
+
+<div>
+  <%= link_to 'Edit', edit_vcard_path(@vcard) %> | <%= link_to 'Back', vcards_path %>
+</div>

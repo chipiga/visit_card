@@ -1,0 +1,14 @@
+<fieldset class="inputs tel">
+  <legend>Telephone</legend>
+  <ol>
+    <li class="field">
+      <%= ff.check_box_collection :types, VcardTel::TYPES %>
+    </li>
+    <li class="field">
+      <%= ff.label :value %>
+      <%= ff.telephone_field :value %>
+    </li>
+  </ol>
+  <%= ff.hidden_field :_destroy, :value => '' %>
+  <a href='#' class='remove'>Remove</a>
+</fieldset>

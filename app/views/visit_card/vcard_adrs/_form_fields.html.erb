@@ -1,0 +1,38 @@
+<fieldset class="inputs adr">
+  <legend>Address</legend>
+  <ol>
+    <li class="field">
+      <%= ff.check_box_collection :types, VcardAdr::TYPES %>
+    </li>
+    <li class="field">
+      <%= ff.label :post_office_box %>
+      <%= ff.text_field :post_office_box %>
+    </li>
+    <li class="field">
+      <%= ff.label :extended_address %>
+      <%= ff.text_field :extended_address %>
+    </li>
+    <li class="field">
+      <%= ff.label :street_address %>
+      <%= ff.text_field :street_address %>
+    </li>
+    <li class="field">
+      <%= ff.label :locality %>
+      <%= ff.text_field :locality %>
+    </li>
+    <li class="field">
+      <%= ff.label :region %>
+      <%= ff.text_field :region %>
+    </li>
+    <li class="field">
+      <%= ff.label :postal_code %>
+      <%= ff.text_field :postal_code %>
+    </li>
+    <li class="field">
+      <%= ff.label :country_name %>
+      <%= ff.text_field :country_name %> <!-- TODO select -->
+    </li>
+  </ol>
+  <%= ff.hidden_field :_destroy, :value => '' %>
+  <a href='#' class='remove'>Remove</a>
+</fieldset>
