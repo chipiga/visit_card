@@ -1,9 +1,10 @@
 class Create<%= table_name.camelize %>Tables < ActiveRecord::Migration
   def self.up
     create_table(:<%= table_name %>) do |t|
-      # t.references :user
+      # t.references :user # additional field for multi-user system
       t.references :agent
-      # t.boolean :primary
+      # t.boolean :primary # additional flag to set primary user contact
+      # t.string :type # uncomment this if you want use alternative vcard model name through STI
       t.string :family_name
       t.string :given_name
       t.string :additional_name

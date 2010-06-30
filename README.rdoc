@@ -1,6 +1,19 @@
 = visit_card
 
-Description goes here.
+Manage visit cards in your app.
+VCard standart (RFC 2426) realization through Rails 3 Engines.
+Support export to hCard microformat.
+
+== TODO
+* Move out styles and javascript from views.
+* Improve hCard microformat export. Move to Builder.
+* Add I18n support.
+* Add localized_country_select plugin support.
+* Add phone gem support.
+* Test suite.
+* Improve Generators. Add seeds generator.
+* Do something with routes?
+* Improve default views.
 
 == Note on Patches/Pull Requests
  

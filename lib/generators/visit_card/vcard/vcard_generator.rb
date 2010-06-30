@@ -43,13 +43,7 @@ module VisitCard
       def inject_vcard_config_into_model
         vcard_class_setup = <<-CONTENT
 
-  has_many :vcard_adrs, :dependent => :destroy
-  has_many :vcard_emails, :dependent => :destroy
-  has_many :vcard_tels, :dependent => :destroy
-  has_many :vcard_categorizations, :dependent => :destroy
-  has_many :vcard_categories, :class_name => 'VcardDictionary', :through => :vcard_categorizations
-  has_many :vcard_extentions, :dependent => :destroy
-  belongs_to :agent, :class_name => '#{table_name.classify}', :foreign_key => 'agent_id'
+  include VisitCard::Models::Vcard
 
 CONTENT
 

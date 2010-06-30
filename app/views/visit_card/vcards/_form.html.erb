@@ -1,41 +1,4 @@
-<style>
-  li.field {clear: both;}
-  li.field > label {display: block;}
-  fieldset ol {list-style-type: none!important; padding: 0!important; margin: 0!important;}
-  fieldset.inputs {border: 1px solid #000000; padding: 10px;}
-  a.add, a.remove {float: right;}
-  .required label:after {content: ' * '; color: red;}
-</style>
-<script>
-$(document).ready(function(){
-  $('a.remove').live('click', function(){
-    //$(this).prev().find('input[type$="hidden"]').val('1');
-    $(this).prev().val('1');
-    $(this).parent().slideUp('slow');
-    return false;
-  });
-  
-  $('a.add').click(function(){
-    var from = $(this).parent().find('fieldset'+($(this).attr('title') ? '.'+$(this).attr('title') : '')+':last'); // source block
-    var id = parseInt(from.find('input:first').attr('id').split('_').sort().shift()) + 1; // parse id and increment
-    var to = from.clone().hide(); // copy block and hide
-    to.find('input,select').attr('id', function(){ // replace id param
-      return this.id.replace(/\d+/, id);
-    });
-    to.find('label').attr('for', function(){ // replace for param
-      return $(this).attr('for').replace(/\d+/, id);
-    });
-    to.find('input,select').attr('name', function(){ // replace name param
-      if ($(this).attr('type') != 'checkbox') { $(this).val(''); } // clear block fields values
-      else { $(this).removeAttr('checked'); } // clear checkboxes
-      return $(this).attr('name').replace(/\d+/, id);
-    });
-    $(this).before(to); // insert block before link
-    to.slideDown('slow'); // show block
-    return false;
-  });
-});
-</script>
+<%= render 'static' %>
 <%= form_for @vcard do |f| %>
   <% if @vcard.errors.any? %>
     <div id="errorExplanation">
@@ -47,6 +10,7 @@ $(document).ready(function(){
       </ul>
     </div>
   <% end %>
+
   <fieldset class="inputs">
     <ol>
       <li class="field required">
@@ -114,11 +78,9 @@ $(document).ready(function(){
         <%= f.label :org %>
         <%= f.text_field :org %>
       </li>
-      
       <li class="field">
         <%= f.check_box_collection :vcard_categories, Hash[ *VcardDictionary.categories.collect { |d| [ d.id, d.name ] }.flatten ] %>
       </li>
-      
       <li class="field">
         <%= f.label :note %>
         <%= f.text_area :note %>
@@ -129,7 +91,7 @@ $(document).ready(function(){
       </li>
       <li class="field">
         <%= f.label :klass %>
-        <%= f.select :klass, Vcard::KLASSES %>
+        <%= f.select :klass, Vcard::VCARD_KLASSES %>
       </li>
 
       <% %w{adrs tels emails extentions}.each do |item| %>
