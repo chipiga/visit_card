@@ -30,10 +30,11 @@ class Create<%= table_name.camelize %>Tables < ActiveRecord::Migration
     add_index :<%= table_name %>, :klass
     # add_index :<%= table_name %>, :user_id
     # add_index :<%= table_name %>, :primary
+    add_index :<%= table_name %>, [:family_name, :given_name]
 
     create_table(:vcard_adrs) do |t|
       t.references :<%= table_name.singularize %>
-      t.integer :types_mask
+      t.integer :types, :default => 0
       t.string :post_office_box
       t.string :extended_address
       t.string :street_address
@@ -46,14 +47,14 @@ class Create<%= table_name.camelize %>Tables < ActiveRecord::Migration
 
     create_table(:vcard_tels) do |t|
       t.references :<%= table_name.singularize %>
-      t.integer :types_mask
+      t.integer :types, :default => 0
       t.string :value
     end
     add_index :vcard_tels, :<%= table_name.singularize %>_id
 
     create_table(:vcard_emails) do |t|
       t.references :<%= table_name.singularize %>
-      t.integer :types_mask
+      t.integer :types, :default => 0
       t.string :value
     end
     add_index :vcard_emails, :<%= table_name.singularize %>_id
@@ -74,7 +75,7 @@ class Create<%= table_name.camelize %>Tables < ActiveRecord::Migration
     create_table(:vcard_extentions) do |t|
       t.references :<%= table_name.singularize %>
       t.references :vcard_dictionary
-      t.integer :types_mask
+      t.integer :types, :default => 0
       t.string :value
     end
     add_index :vcard_extentions, :<%= table_name.singularize %>_id

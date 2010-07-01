@@ -4,7 +4,7 @@ module VisitCard
       extend ActiveSupport::Concern
 
       VCARD_KLASSES = %w{public private confidential}
-      VCARD_NESTED_ATTRIBUTES_REJECT_IF = lambda {|a| a.reject{|k,v| k.include?('types')}.all? {|_, v| v.blank?}}
+      VCARD_NESTED_ATTRIBUTES_REJECT_IF = lambda {|a| a.reject{|k,v| k.include?('types') || k.include?('_id')}.all? {|_, v| v.blank?}}
 
       included do
         has_many :vcard_adrs, :dependent => :destroy
@@ -22,7 +22,8 @@ module VisitCard
         # Setup accessible (or protected) attributes for your model
         # attr_accessible :given_name, :last_name, :additional_name
 
-        scope :except, lambda {|*ids| ids.compact.blank? ? where('1 = 1') : where('id NOT IN(?)', ids.join(','))}
+        scope :except, lambda {|id| id.blank? ? where('1 = 1') : where('id <> ?', (::Vcard.find(id).id rescue 0))} # for slugs support
+        # scope :excepts, lambda {|*ids| ids.compact.blank? ? where('1 = 1') : where('id NOT IN(?)', ids.join(','))}
 
         accepts_nested_attributes_for :vcard_adrs, :vcard_tels, :vcard_emails, :vcard_extentions,
                                       :reject_if => VCARD_NESTED_ATTRIBUTES_REJECT_IF, :allow_destroy => true
@@ -35,6 +36,10 @@ module VisitCard
 
         def n
           "#{family_name};#{given_name};#{additional_name};#{honorific_prefix};#{honorific_suffix}"
+        end
+
+        def fga
+          "#{family_name} #{given_name} #{additional_name}".strip
         end
 
         # TODO move to separate builder class

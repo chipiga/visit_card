@@ -2,7 +2,7 @@
 
 Manage visit cards in your app.
 VCard standart (RFC 2426) realization through Rails 3 Engines.
-Support export to hCard microformat.
+Supports export to hCard microformat.
 
 == TODO
 * Move out styles and javascript from views.

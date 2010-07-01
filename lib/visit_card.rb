@@ -1,22 +1,30 @@
+require 'bitmask-attribute'
+
 module VisitCard
   VCARD_VERSION = '3.0'
 
   module Models
-    autoload :Vcard, 'visit_card/models/vcard'
-    autoload :VcardAdr, 'visit_card/models/vcard_adr'
-    autoload :VcardCategorization, 'visit_card/models/vcard_categorization'
-    autoload :VcardDictionary, 'visit_card/models/vcard_dictionary'
-    autoload :VcardEmail, 'visit_card/models/vcard_email'
-    autoload :VcardExtention, 'visit_card/models/vcard_extention'
-    autoload :VcardTel, 'visit_card/models/vcard_tel'
+    extend ActiveSupport::Autoload
+
+    autoload :Vcard
+    autoload :VcardAdr
+    autoload :VcardCategorization
+    autoload :VcardDictionary
+    autoload :VcardEmail
+    autoload :VcardExtention
+    autoload :VcardTel
   end
 
   module Controllers
-    autoload :VcardsController, 'visit_card/controllers/vcards_controller'
+    extend ActiveSupport::Autoload
+
+    autoload :VcardsController
   end
 
   module Helpers
-    autoload :VcardsHelper, 'visit_card/helpers/vcards_helper'
+    extend ActiveSupport::Autoload
+
+    autoload :VcardsHelper
   end
 
   class Engine < Rails::Engine

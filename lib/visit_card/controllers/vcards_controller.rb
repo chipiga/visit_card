@@ -9,41 +9,41 @@ module VisitCard
 
       module InstanceMethods
         def index
-          @vcards = Vcard.all
+          @vcards ||= Vcard.all
           respond_with(@vcards)
         end
 
         def show
-          @vcard = Vcard.find(params[:id])
+          @vcard ||= Vcard.find(params[:id])
           respond_with(@vcards)
         end
 
         def new
-          @vcard = Vcard.new
+          @vcard ||= Vcard.new
           build_relations
           respond_with(@vcard)
         end
 
         def edit
-          @vcard = Vcard.find(params[:id])
+          @vcard ||= Vcard.find(params[:id])
           build_relations
           respond_with(@vcard)
         end
 
         def create
-          @vcard = Vcard.new(params[:vcard])
+          @vcard ||= Vcard.new(params[:vcard])
           build_relations unless @vcard.save
           respond_with(@vcard)
         end
 
         def update
-          @vcard = Vcard.find(params[:id])
+          @vcard ||= Vcard.find(params[:id])
           build_relations unless @vcard.update_attributes(params[:vcard])
           respond_with(@vcard)
         end
 
         def destroy
-          @vcard = Vcard.find(params[:id])
+          @vcard ||= Vcard.find(params[:id])
           @vcard.destroy
           respond_with(@vcard)
         end

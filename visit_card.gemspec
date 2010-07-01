@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{visit_card}
-  s.version = "0.0.0"
+  s.version = "0.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Pavel Chipiga"]
-  s.date = %q{2010-06-26}
-  s.description = %q{Rails 3 engines plugin for VCards store and managment}
+  s.date = %q{2010-07-01}
+  s.description = %q{Rails 3 engines plugin for VCard store and managment}
   s.email = %q{pavel.chipiga@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -23,14 +23,51 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
+     "app/controllers/vcards_controller.rb",
+     "app/helpers/vcards_helper.rb",
+     "app/models/vcard.rb",
+     "app/models/vcard_adr.rb",
+     "app/models/vcard_categorization.rb",
+     "app/models/vcard_dictionary.rb",
+     "app/models/vcard_email.rb",
+     "app/models/vcard_extention.rb",
+     "app/models/vcard_tel.rb",
+     "app/views/visit_card/vcard_adrs/_form_fields.html.erb",
+     "app/views/visit_card/vcard_emails/_form_fields.html.erb",
+     "app/views/visit_card/vcard_extentions/_form_fields.html.erb",
+     "app/views/visit_card/vcard_tels/_form_fields.html.erb",
+     "app/views/visit_card/vcards/_form.html.erb",
+     "app/views/visit_card/vcards/_hcard.html.erb",
+     "app/views/visit_card/vcards/_static.html",
+     "app/views/visit_card/vcards/edit.html.erb",
+     "app/views/visit_card/vcards/index.html.erb",
+     "app/views/visit_card/vcards/new.html.erb",
+     "app/views/visit_card/vcards/show.html.erb",
+     "config/routes.rb",
+     "lib/generators/visit_card/vcard/templates/migration.rb",
+     "lib/generators/visit_card/vcard/templates/seeds.rb",
+     "lib/generators/visit_card/vcard/vcard_generator.rb",
+     "lib/generators/visit_card/views/views_generator.rb",
+     "lib/visit_card.rb",
+     "lib/visit_card/controllers/vcards_controller.rb",
+     "lib/visit_card/helpers/vcards_helper.rb",
+     "lib/visit_card/models/vcard.rb",
+     "lib/visit_card/models/vcard_adr.rb",
+     "lib/visit_card/models/vcard_categorization.rb",
+     "lib/visit_card/models/vcard_dictionary.rb",
+     "lib/visit_card/models/vcard_email.rb",
+     "lib/visit_card/models/vcard_extention.rb",
+     "lib/visit_card/models/vcard_tel.rb",
      "spec/spec.opts",
-     "spec/spec_helper.rb"
+     "spec/spec_helper.rb",
+     "spec/visit_card_spec.rb",
+     "visit_card.gemspec"
   ]
   s.homepage = %q{http://github.com/chipiga/visit_card}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
-  s.summary = %q{VCard for Rails 3 implementation}
+  s.summary = %q{VCard implementation for  Rails 3}
   s.test_files = [
     "spec/spec_helper.rb",
      "spec/visit_card_spec.rb"
@@ -41,11 +78,14 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<bitmask-attribute>, [">= 1.2.0"])
       s.add_development_dependency(%q<rspec>, [">= 1.2.9"])
     else
+      s.add_dependency(%q<bitmask-attribute>, [">= 1.2.0"])
       s.add_dependency(%q<rspec>, [">= 1.2.9"])
     end
   else
+    s.add_dependency(%q<bitmask-attribute>, [">= 1.2.0"])
     s.add_dependency(%q<rspec>, [">= 1.2.9"])
   end
 end

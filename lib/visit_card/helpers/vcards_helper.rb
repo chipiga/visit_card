@@ -36,7 +36,7 @@ module VisitCard
             checked = object.send(:"#{method.to_s.singularize}_ids").include?(value)
           else # hbtm through bit mask
             name = "#{object_name}[#{method}][]"
-            checked = object.send(method.to_sym).include?(value)
+            checked = object.send("#{method}?", value)
           end
           ActionView::Helpers::InstanceTag.new(object_name, method, self, options.delete(:object)).
                                            to_check_box_collection_check_box_tag(name, value, checked, options)

@@ -5,12 +5,12 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "visit_card"
-    gem.summary = %Q{VCard for Rails 3 implementation}
-    gem.description = %Q{Rails 3 engines plugin for VCards store and managment}
+    gem.summary = %Q{VCard implementation for  Rails 3}
+    gem.description = %Q{Rails 3 engines plugin for VCard store and managment}
     gem.email = "pavel.chipiga@gmail.com"
     gem.homepage = "http://github.com/chipiga/visit_card"
     gem.authors = ["Pavel Chipiga"]
-    # gem.add_dependency "bitmask-attribute", ">= 2.0.0"
+    gem.add_dependency "bitmask-attribute", ">= 1.2.0"
     gem.add_development_dependency "rspec", ">= 1.2.9"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
