@@ -12,7 +12,7 @@ module VisitCard
         has_many :vcard_tels, :dependent => :destroy
         has_many :vcard_categorizations, :dependent => :destroy
         has_many :vcard_categories, :class_name => 'VcardDictionary', :through => :vcard_categorizations
-        has_many :vcard_extentions, :dependent => :destroy
+        has_many :vcard_extensions, :dependent => :destroy
         belongs_to :agent, :class_name => 'Vcard', :foreign_key => 'agent_id'
 
         validates :family_name, :given_name, :presence => true
@@ -25,7 +25,7 @@ module VisitCard
         scope :except, lambda {|id| id.blank? ? where('1 = 1') : where('id <> ?', (::Vcard.find(id).id rescue 0))} # for slugs support
         # scope :excepts, lambda {|*ids| ids.compact.blank? ? where('1 = 1') : where('id NOT IN(?)', ids.join(','))}
 
-        accepts_nested_attributes_for :vcard_adrs, :vcard_tels, :vcard_emails, :vcard_extentions,
+        accepts_nested_attributes_for :vcard_adrs, :vcard_tels, :vcard_emails, :vcard_extensions,
                                       :reject_if => VCARD_NESTED_ATTRIBUTES_REJECT_IF, :allow_destroy => true
       end
 

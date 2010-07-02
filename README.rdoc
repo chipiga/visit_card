@@ -10,6 +10,7 @@ Supports export to hCard microformat.
 * Add I18n support.
 * Add localized_country_select plugin support.
 * Add phone gem support.
+* Import/Export VCard.
 * Test suite.
 * Improve Generators. Add seeds generator.
 * Do something with routes?

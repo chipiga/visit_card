@@ -1,12 +1,12 @@
-<fieldset class="inputs extention">
-  <legend>Extention</legend>
+<fieldset class="inputs extension">
+  <legend>Extension</legend>
   <ol>
     <li class="field">
-      <%= ff.check_box_collection :types, VcardExtention::TYPES %>
+      <%= ff.check_box_collection :types, VcardExtension::TYPES %>
     </li>
     <li class="field">
-      <%= ff.label :vcard_extention_type %>
-      <%= ff.select :vcard_dictionary_id, VcardDictionary.extention_types.map{|e| [e.name, e.id]} %>
+      <%= ff.label :vcard_extension_type %>
+      <%= ff.select :vcard_dictionary_id, VcardDictionary.extension_types.map{|e| [e.name, e.id]} %>
     </li>
     <li class="field">
       <%= ff.label :value %>

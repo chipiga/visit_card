@@ -3,7 +3,7 @@ module VisitCard
     module VcardDictionary
       extend ActiveSupport::Concern
 
-      KLASSES = %w{category extention_type}
+      KLASSES = %w{category extension_type}
 
       included do
         validates :klass, :name, :presence => true
@@ -11,7 +11,7 @@ module VisitCard
 
         scope :ordered, order('name ASC')
         scope :categories, where(:klass => 'category')
-        scope :extention_types, where(:klass => 'extention_type')
+        scope :extension_types, where(:klass => 'extension_type')
         default_scope ordered
       end
 

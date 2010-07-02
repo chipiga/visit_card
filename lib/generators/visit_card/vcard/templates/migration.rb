@@ -72,14 +72,14 @@ class Create<%= table_name.camelize %>Tables < ActiveRecord::Migration
     end
     add_index :vcard_categorizations, [:<%= table_name.singularize %>_id, :vcard_dictionary_id], :unique => true
 
-    create_table(:vcard_extentions) do |t|
+    create_table(:vcard_extensions) do |t|
       t.references :<%= table_name.singularize %>
       t.references :vcard_dictionary
       t.integer :types, :default => 0
       t.string :value
     end
-    add_index :vcard_extentions, :<%= table_name.singularize %>_id
-    add_index :vcard_extentions, :vcard_dictionary_id
+    add_index :vcard_extensions, :<%= table_name.singularize %>_id
+    add_index :vcard_extensions, :vcard_dictionary_id
   end
 
   def self.down
@@ -89,6 +89,6 @@ class Create<%= table_name.camelize %>Tables < ActiveRecord::Migration
     drop_table :vcard_emails
     drop_table :vcard_dictionaries
     drop_table :vcard_categorizations
-    drop_table :vcard_extentions
+    drop_table :vcard_extensions
   end
 end

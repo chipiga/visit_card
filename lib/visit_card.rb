@@ -11,7 +11,7 @@ module VisitCard
     autoload :VcardCategorization
     autoload :VcardDictionary
     autoload :VcardEmail
-    autoload :VcardExtention
+    autoload :VcardExtension
     autoload :VcardTel
   end
 

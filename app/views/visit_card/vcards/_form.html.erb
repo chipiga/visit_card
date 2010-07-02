@@ -94,7 +94,7 @@
         <%= f.select :klass, Vcard::VCARD_KLASSES %>
       </li>
 
-      <% %w{adrs tels emails extentions}.each do |item| %>
+      <% %w{adrs tels emails extensions}.each do |item| %>
         <li class="field <%= item %>">
           <%= f.fields_for :"vcard_#{item}" do |ff| %>
             <%= render "vcard_#{item}/form_fields", :ff => ff %>

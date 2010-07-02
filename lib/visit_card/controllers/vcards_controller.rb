@@ -54,7 +54,7 @@ module VisitCard
           @vcard.vcard_adrs.build if @vcard.vcard_adrs.empty?
           @vcard.vcard_tels.build if @vcard.vcard_tels.empty?
           @vcard.vcard_emails.build if @vcard.vcard_emails.empty?
-          @vcard.vcard_extentions.build if @vcard.vcard_extentions.empty?
+          @vcard.vcard_extensions.build if @vcard.vcard_extensions.empty?
         end
       end
 

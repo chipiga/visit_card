@@ -1,14 +1,14 @@
 module VisitCard
   module Models
-    module VcardExtention
+    module VcardExtension
       extend ActiveSupport::Concern
 
       TYPES = %w{home msg work pref voice video pager pcs internet other}
 
       included do
         belongs_to :vcard
-        belongs_to :vcard_extention_type, :class_name => 'VcardDictionary'
-        validates :vcard_extention_type, :presence => true
+        belongs_to :vcard_extension_type, :class_name => 'VcardDictionary'
+        validates :vcard_extension_type, :presence => true
         bitmask :types, :as => TYPES
       end
 
