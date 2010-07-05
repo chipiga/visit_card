@@ -7,11 +7,16 @@ module VisitCard
 
       included do
         belongs_to :vcard
-        # TODO phone format parse and validate
+        before_filter :parse_phone
         bitmask :types, :as => TYPES
       end
 
       module InstanceMethods
+        protected
+
+        def parse_phone
+          self.value = Phone.parse(value) if defined? Phone
+        end
       end
 
       module ClassMethods
