@@ -30,7 +30,7 @@
     </li>
     <li class="field">
       <%= ff.label :country_name %>
-      <%= ff.text_field :country_name %> <!-- TODO select -->
+      <%= ff.respond_to?(:country_select) ? ff.country_select(:country_name, [], :include_blank => true) : ff.text_field(:country_name) %>
     </li>
   </ol>
   <%= ff.hidden_field :_destroy, :value => '' %>
