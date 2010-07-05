@@ -7,7 +7,7 @@ module VisitCard
 
       included do
         belongs_to :vcard
-        before_filter :parse_phone
+        before_validation :parse_phone
         bitmask :types, :as => TYPES
       end
 
@@ -15,7 +15,7 @@ module VisitCard
         protected
 
         def parse_phone
-          self.value = Phone.parse(value) if defined? Phone
+          self.value = Phone.parse(value).to_s if defined? Phone
         end
       end
 

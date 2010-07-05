@@ -7,7 +7,7 @@ Supports export to hCard microformat.
 If you want parse telephone format add phone gem (http://github.com/carr/phone) to your Gemfile:
   gem 'phone'
 
-And setup:
+Then setup at config/initializers/phone.rb. For example:
   Phone.default_country_code = '380'
   Phone.default_area_code = '57'
   Phone.named_formats[:ua] = '+%c-%a-%f-%l'
