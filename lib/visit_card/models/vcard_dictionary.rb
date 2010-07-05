@@ -3,8 +3,6 @@ module VisitCard
     module VcardDictionary
       extend ActiveSupport::Concern
 
-      KLASSES = %w{category extension_type}
-
       included do
         validates :klass, :name, :presence => true
         validates_uniqueness_of :name, :scope => :klass

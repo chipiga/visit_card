@@ -91,7 +91,7 @@
       </li>
       <li class="field">
         <%= f.label :klass %>
-        <%= f.select :klass, Vcard::VCARD_KLASSES %>
+        <%= f.select :klass, VisitCard.klasses %>
       </li>
 
       <% %w{adrs tels emails extensions}.each do |item| %>

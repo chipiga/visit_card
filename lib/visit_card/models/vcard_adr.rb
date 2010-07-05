@@ -3,11 +3,9 @@ module VisitCard
     module VcardAdr
       extend ActiveSupport::Concern
 
-      TYPES = %w{dom intl postal parcel home work pref}
-
       included do
         belongs_to :vcard
-        bitmask :types, :as => TYPES
+        bitmask :types, :as => VisitCard.adr_types
       end
 
       module InstanceMethods
