@@ -13,16 +13,22 @@ class Create<%= table_name.camelize %>Tables < ActiveRecord::Migration
       t.string :nickname
       t.text :photo
       t.date :bday
+      t.string :mailer
       t.string :tz
       t.float :latitude
       t.float :longitude
       t.string :title
       t.string :role
       t.text :logo
-      t.string :org
+      t.string :organization_name
+      t.string :organization_unit
       t.text :note
+      t.string :sort_string
+      t.text :sound
+      t.string :uid
       t.string :url
       t.string :klass
+      t.text :key
 
       t.timestamps
     end

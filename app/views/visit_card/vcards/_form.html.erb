@@ -47,6 +47,10 @@
       </li>
 
       <li class="field">
+        <%= f.label :mailer %>
+        <%= f.text_field :mailer %>
+      </li>
+      <li class="field">
         <%= f.label :tz %>
         <%= f.time_zone_select :tz, nil, :include_blank => true %>
       </li>
@@ -74,9 +78,13 @@
         <%= f.label :agent %>
         <%= f.select :agent_id, Vcard.except(params[:id]).collect {|v| [ v.fn, v.id ] }, :include_blank => true %>
       </li>
+      <li class="field required">
+        <%= f.label :organization_name %>
+        <%= f.text_field :organization_name %>
+      </li>
       <li class="field">
-        <%= f.label :org %>
-        <%= f.text_field :org %>
+        <%= f.label :organization_unit %>
+        <%= f.text_field :organization_unit %>
       </li>
       <li class="field">
         <%= f.check_box_collection :vcard_categories, Hash[ *VcardDictionary.categories.collect { |d| [ d.id, d.name ] }.flatten ] %>
@@ -86,12 +94,28 @@
         <%= f.text_area :note %>
       </li>
       <li class="field">
+        <%= f.label :sort_string %>
+        <%= f.text_field :sort_string %>
+      </li>
+      <li class="field">
+        <%= f.label :sound %>
+        <%= f.text_field :sound %>
+      </li>
+      <li class="field">
+        <%= f.label :uid %>
+        <%= f.text_field :uid %>
+      </li>
+      <li class="field">
         <%= f.label :url %>
         <%= f.url_field :url %>
       </li>
       <li class="field">
         <%= f.label :klass %>
         <%= f.select :klass, VisitCard.klasses %>
+      </li>
+      <li class="field">
+        <%= f.label :key %>
+        <%= f.text_field :key %>
       </li>
 
       <% %w{adrs tels emails extensions}.each do |item| %>
