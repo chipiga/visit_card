@@ -10,6 +10,14 @@ module VisitCard
       end
 
       module InstanceMethods
+        def to_hcard(options = {})
+          result = []
+          result << "<span class='type'>#{types.join(', ').titleize}</span>" unless types.empty?
+          tag_name = options.fetch(:tag_name, 'a')
+          result << "<#{tag_name} class='value' href='mailto:#{value}'>#{value}</#{tag_name}>"
+          main_tag_name = options.fetch(:main_tag_name, 'div')
+          ("<#{main_tag_name} class='email'>" << result.join(' ') << "</#{main_tag_name}>").html_safe
+        end
       end
 
       module ClassMethods

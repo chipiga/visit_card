@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{visit_card}
-  s.version = "0.0.1"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Pavel Chipiga"]
-  s.date = %q{2010-07-02}
+  s.date = %q{2010-07-06}
   s.description = %q{Rails 3 engines plugin for VCard store and managment}
   s.email = %q{pavel.chipiga@gmail.com}
   s.extra_rdoc_files = [
@@ -30,9 +30,11 @@ Gem::Specification.new do |s|
      "app/models/vcard_categorization.rb",
      "app/models/vcard_dictionary.rb",
      "app/models/vcard_email.rb",
+     "app/models/vcard_extension.rb",
      "app/models/vcard_tel.rb",
      "app/views/visit_card/vcard_adrs/_form_fields.html.erb",
      "app/views/visit_card/vcard_emails/_form_fields.html.erb",
+     "app/views/visit_card/vcard_extensions/_form_fields.html.erb",
      "app/views/visit_card/vcard_tels/_form_fields.html.erb",
      "app/views/visit_card/vcards/_form.html.erb",
      "app/views/visit_card/vcards/_hcard.html.erb",
@@ -54,6 +56,7 @@ Gem::Specification.new do |s|
      "lib/visit_card/models/vcard_categorization.rb",
      "lib/visit_card/models/vcard_dictionary.rb",
      "lib/visit_card/models/vcard_email.rb",
+     "lib/visit_card/models/vcard_extension.rb",
      "lib/visit_card/models/vcard_tel.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb",
@@ -75,14 +78,14 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<bitmask-attribute>, [">= 1.2.0"])
+      s.add_runtime_dependency(%q<clean-bitmask-attribute>, [">= 2.0.0"])
       s.add_development_dependency(%q<rspec>, [">= 1.2.9"])
     else
-      s.add_dependency(%q<bitmask-attribute>, [">= 1.2.0"])
+      s.add_dependency(%q<clean-bitmask-attribute>, [">= 2.0.0"])
       s.add_dependency(%q<rspec>, [">= 1.2.9"])
     end
   else
-    s.add_dependency(%q<bitmask-attribute>, [">= 1.2.0"])
+    s.add_dependency(%q<clean-bitmask-attribute>, [">= 2.0.0"])
     s.add_dependency(%q<rspec>, [">= 1.2.9"])
   end
 end

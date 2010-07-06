@@ -3,13 +3,11 @@
 <table>
   <tr>
     <th>FN</th>
-    <th>ORG</th>
     <th>Action</th>
   </tr>
 <% @vcards.each do |vcard| %>
   <tr>
     <td><%= link_to(vcard.fga, vcard) %></td>
-    <td><%= vcard.org %></td>
     <td><%= link_to 'Edit', edit_vcard_path(vcard) %> | <%= link_to 'Destroy', vcard, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>

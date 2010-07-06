@@ -28,15 +28,6 @@ module VisitCard
     autoload :VcardEmail
     autoload :VcardExtension
     autoload :VcardTel
-
-    module Serializers
-      extend ActiveSupport::Autoload
-      
-      eager_autoload do
-        autoload :HcardSerializer
-        autoload :VcardSerializer
-      end
-    end
   end
 
   module Controllers

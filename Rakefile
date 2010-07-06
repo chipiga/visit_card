@@ -10,7 +10,7 @@ begin
     gem.email = "pavel.chipiga@gmail.com"
     gem.homepage = "http://github.com/chipiga/visit_card"
     gem.authors = ["Pavel Chipiga"]
-    gem.add_dependency "bitmask-attribute", ">= 1.2.0"
+    gem.add_dependency "clean-bitmask-attribute", ">= 2.0.0"
     gem.add_development_dependency "rspec", ">= 1.2.9"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
