@@ -76,7 +76,7 @@
       </li>
       <li class="field">
         <%= f.label :agent %>
-        <%= f.select :agent_id, Vcard.except(params[:id]).collect {|v| [ v.fn, v.id ] }, :include_blank => true %>
+        <%= f.select :agent_id, Vcard.except(params[:id]).collect {|v| [ v.fga, v.id ] }, :include_blank => true %>
       </li>
       <li class="field required">
         <%= f.label :organization_name %>
